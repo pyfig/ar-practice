@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <title>Практическая работа 5. TestIT</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #1f2937;
+      line-height: 1.55;
+      margin: 36px auto;
+      max-width: 900px;
+      padding: 0 24px 48px;
+    }
+    h2 {
+      margin-top: 28px;
+      margin-bottom: 12px;
+      font-size: 24px;
+      border-bottom: 2px solid #e5e7eb;
+      padding-bottom: 6px;
+    }
+    p, li, blockquote, td, th {
+      font-size: 15px;
+    }
+    ol {
+      padding-left: 24px;
+    }
+    code {
+      background: #f3f4f6;
+      border-radius: 4px;
+      padding: 1px 4px;
+      font-size: 0.95em;
+    }
+    pre {
+      background: #111827;
+      color: #f9fafb;
+      border-radius: 10px;
+      padding: 14px 16px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+    }
+    pre code {
+      background: transparent;
+      padding: 0;
+      color: inherit;
+    }
+    blockquote {
+      margin: 16px 0;
+      padding: 10px 14px;
+      border-left: 4px solid #93c5fd;
+      background: #eff6ff;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+    }
+    th, td {
+      border: 1px solid #d1d5db;
+      padding: 8px 10px;
+      vertical-align: top;
+      text-align: left;
+    }
+    th {
+      background: #f3f4f6;
+    }
+    figure {
+      margin: 18px 0 22px;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      display: block;
+    }
+    figcaption {
+      color: #6b7280;
+      font-size: 13px;
+      margin-top: 6px;
+    }
+    a {
+      color: #1d4ed8;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+<h2>Практическая работа 5. Система управления тестированием ПО TestIT</h2>
+<p><strong>Дисциплина:</strong> Обеспечение качества функционирования компьютерных систем <strong>Студент:</strong> <code>Храмов Даниил Романович</code> <strong>Группа:</strong> <code>9ИС-495К</code> <strong>Дата выполнения:</strong> <code>19.03.2026</code></p>
+<blockquote>Отчет обновлен по фактическому состоянию проекта в TestIT на <code>19.03.2026</code>. Реальные скриншоты уже подключены для проекта, импорта, секций, Google Sheets, категорий ошибок, <code>Defect</code>-связей и тест-плана. Отдельно вручную при необходимости стоит заменить только скриншоты регистрации / пространства.</blockquote>
+<h2>Цель работы</h2>
+<p>Освоить базовые возможности системы управления тестированием TestIT: регистрацию, создание пространства и проекта, импорт тестовой документации, организацию секций и наборов, работу со ссылками, тегами, атрибутами, категориями ошибок и тест-планами.</p>
+<h2>Импорт и перенос тестовой документации</h2>
+<p>В проект были перенесены тест-кейсы из практической работы 2. Перенос можно выполнить двумя способами:</p>
+<ol>
+<li>Через импорт <code>XLSX</code>, если тест-кейсы заранее подготовлены в таблице.</li>
+<li>Вручную, если тест-кейсов немного или их нужно переработать под структуру TestIT.</li>
+</ol>
+<p>В моем случае был использован импорт из <code>XLSX</code>.</p>
+<p><strong>Источник тест-кейсов:</strong> локальный файл <code>testit_import_practice2_first_name_clean.xlsx</code> <strong>Количество перенесенных тест-кейсов:</strong> <code>11</code> <strong>Раздел проекта для импорта:</strong> <code>Практическая 2 - First Name</code></p>
+<figure><img src="images-real/04-import-practice2-step7.png" alt="Импорт тест-кейсов в TestIT из XLSX" /><figcaption>Импорт тест-кейсов в TestIT из XLSX</figcaption></figure>
+<h2>Перенос чек-листа и организация секций</h2>
+<p>Чек-лист был создан и добавлен в секцию с тестами по полю <code>First name</code>. Так как тест-кейсы из практической работы 2 не относятся к сайту колледжа, они были размещены в отдельной секции, отличной от секции с кейсами по сайту <code>nke.ru</code>.</p>
+<p>Фактическая структура секций проекта:</p>
+<ol>
+<li><code>Практическая 2 - First Name</code></li>
+<li><code>Практическая 4 - Баг-репорты nke.ru</code></li>
+</ol>
+<p>Для секций были указаны предусловия и постусловия там, где это уместно.</p>
+<p><strong>Предусловие секции с кейсами по полю First Name:</strong> открыта форма регистрации, поле <code>First name</code> доступно для ввода. <strong>Постусловие секции:</strong> поле очищено, форма возвращена в исходное состояние. <strong>Дополнительно:</strong> после импорта были архивированы 3 служебные строки из листа <code>Readme</code>, чтобы в секции остались только реальные рабочие элементы.</p>
+<figure><img src="images-real/11-library-practice2-clean.png" alt="Секция практической 2 после очистки импорта и добавления чек-листа" /><figcaption>Секция практической 2 после очистки импорта и добавления чек-листа</figcaption></figure>
+<h2>Создание тест-кейсов по чек-листу</h2>
+<p>На основе ранее составленного чек-листа и импортированного набора тестов была сформирована секция с тестами по полю <code>First name</code>. Дополнительно в этой же секции создан отдельный чек-лист <code>Чек-лист проверки поля First name</code> с восемью пунктами проверки.</p>
+<p>Примеры логических групп:</p>
+<ol>
+<li>Валидный ввод</li>
+<li>Граничные значения длины</li>
+<li>Недопустимые символы</li>
+<li>Локализация и алфавиты</li>
+<li>Негативные сценарии</li>
+</ol>
+<figure><img src="images-real/06-practice2-imported.png" alt="Тест-кейсы по проверке поля First name в TestIT" /><figcaption>Тест-кейсы по проверке поля First name в TestIT</figcaption></figure>
+<h2>Создание тест-кейсов на основе баг-репортов</h2>
+<p>На основе баг-репортов из практической работы 4 были созданы отдельные тест-кейсы, направленные на воспроизведение ошибок. Они вынесены в отдельную секцию <code>Практическая 4 - Баг-репорты nke.ru</code>.</p>
+<p>Для сохранения трассировки использовались одинаковые или максимально близкие названия и описания дефектов в баг-репорте и в карточке тест-кейса.</p>
+<p>Пример оформления связей:</p>
+<ol>
+<li><code>TC_BUG_001 - Некорректная работа поиска</code></li>
+<li><code>TC_BUG_002 - Пустая страница раздела</code></li>
+<li><code>TC_BUG_003 - Ошибка мобильного отображения</code></li>
+</ol>
+<figure><img src="images-real/12-library-bug-cases.png" alt="Тест-кейсы по баг-репортам в отдельной секции проекта" /><figcaption>Тест-кейсы по баг-репортам в отдельной секции проекта</figcaption></figure>
+<p>По состоянию на момент подготовки отчета для этих тестов в тест-плане уже выставлен результат <strong>Провален</strong>. Для всех баг-ориентированных тест-кейсов дополнительно созданы ссылки типа <strong>Дефект</strong>, ведущие на соответствующие строки Google Sheets-таблицы с баг-репортами.</p>
+<h2>Google Sheets и связи Defect</h2>
+<p>Для хранения баг-репортов была создана отдельная Google Sheets-таблица:</p>
+<p><strong>Название таблицы:</strong> <code>KhramovБагрепорты_для_nke_ru</code> <strong>Ссылка на таблицу:</strong> <a href="https://docs.google.com/spreadsheets/d/1l8_rcHw_ZyikXlqQb2emOOyDXfKThrRwc-xGJluPEnQ/edit?gid=0#gid=0">KhramovБагрепорты_для_nke_ru</a> <strong>Содержимое:</strong> <code>15</code> баг-репортов с идентификаторами <code>BG-01</code> ... <code>BG-15</code></p>
+<p>В таблицу были внесены:</p>
+<ol>
+<li>Идентификатор бага</li>
+<li>Название баг-репорта</li>
+<li>Связанный тест-кейс в TestIT</li>
+<li>Категория</li>
+<li>URL страницы</li>
+<li>Шаги воспроизведения</li>
+<li>Фактический результат</li>
+<li>Ожидаемый результат</li>
+<li>Важность, срочность, статус, автор и дата</li>
+</ol>
+<p>Для тест-кейсов из секции <code>Практическая 4 - Баг-репорты nke.ru</code> были созданы ссылки типа <code>Дефект</code>, причем:</p>
+<ol>
+<li>Ссылка ведет не просто на таблицу, а на конкретную строку нужного баг-репорта.</li>
+<li>Заголовок ссылки совпадает с названием баг-репорта.</li>
+<li>В описании ссылки сохранен идентификатор вида <code>BG-03</code>, <code>BG-10</code> и т.д.</li>
+</ol>
+<p>Это позволяет сохранить трассировку между тест-кейсом и баг-репортом и быстро переходить к нужной записи в Google Sheets.</p>
+<figure><img src="images-real/13-google-sheet.png" alt="Google Sheets-таблица с баг-репортами" /><figcaption>Google Sheets-таблица с баг-репортами</figcaption></figure>
+<figure><img src="images-real/14-defect-link.png" alt="Ссылка типа Defect в карточке тест-кейса" /><figcaption>Ссылка типа Defect в карточке тест-кейса</figcaption></figure>
+<h2>Категории ошибок</h2>
+<p>В разделе <strong>Автотестирование -&gt; Категории ошибок</strong> были добавлены категории, соответствующие найденным дефектам. Ниже приведен пример набора категорий, который подходит под баг-репорты по сайту колледжа:</p>
+<ol>
+<li><code>UI / Layout</code></li>
+<li><code>Navigation</code></li>
+<li><code>Search</code></li>
+<li><code>Broken link</code></li>
+<li><code>Accessibility</code></li>
+<li><code>Mobile</code></li>
+<li><code>Content / Typo</code></li>
+<li><code>Color / Contrast</code></li>
+<li><code>Empty page</code></li>
+<li><code>Forms</code></li>
+<li><code>Schedule</code></li>
+</ol>
+<figure><img src="images-real/10-defect-categories.png" alt="Категории ошибок в TestIT" /><figcaption>Категории ошибок в TestIT</figcaption></figure>
+<h2>Создание тест-плана</h2>
+<p>После подготовки тестовой документации был создан тест-план, в который включены:</p>
+<ol>
+<li>Тест-кейсы по чек-листу из практической работы 2</li>
+<li>Тест-кейсы на воспроизведение дефектов из практической работы 4</li>
+<li>Секции и/или наборы, соответствующие структуре библиотеки тестов</li>
+</ol>
+<p><strong>Название тест-плана:</strong> <code>Тест-план практическая 5</code> <strong>Включенные наборы:</strong> <code>Набор практической 5</code> <strong>Состав тест-плана:</strong> <code>27</code> тестов <strong>Результаты по состоянию на момент фиксации:</strong> <code>15</code> тестов отмечены как <code>Провален</code>, <code>12</code> находятся в статусе <code>Ожидает</code></p>
+<figure><img src="images-real/09-test-plan-bug-failures.png" alt="Тест-план с результатами баг-ориентированных тестов" /><figcaption>Тест-план с результатами баг-ориентированных тестов</figcaption></figure>
+<h2>Ответы на вопросы по документации TestIT</h2>
+<ol>
+<li><strong>Что такое параметры и как их создавать?</strong>  </li>
+<p>Параметры в TestIT представляют собой характеристики окружения или переменные тестовых данных, которые помогают избегать дублирования тест-кейсов. Их можно использовать в самих тестах и в конфигурациях. Если в тест-кейсе указан параметр с несколькими значениями, а затем тест добавлен в набор, в тест-плане формируются отдельные тест-поинты по значениям параметров. Создание параметров выполняется через раздел <strong>Настройки проектов -&gt; Параметры</strong>: нужно указать название параметра, проекты, где он будет использоваться, и набор допустимых значений. В самом тесте параметр подставляется через символ <code>%</code> в шаге. <strong>Источники:</strong> <a href="https://docs.testit.software/user-guide/sections/use-parameters-in-tests.html">Добавление параметров в тесты</a>, <a href="https://docs.testit.software/user-guide/create-configurations.html">Работа с параметрами и конфигурациями</a></p>
+</ol>
+<ol>
+<li><strong>Для чего необходимо поле продолжительность?</strong>  </li>
+<p>Поле продолжительности нужно для оценки времени выполнения тестов и планирования нагрузки. По документации TestIT оценочное время используется в отчете по тест-плану: там можно отслеживать запланированное время, затраченное время и отставание от графика, а на диаграмме сгорания задач ось Y может отображать именно оценочную продолжительность выполнения тест-поинтов. Следовательно, это поле полезно для оценки трудозатрат, балансировки работы тестировщиков и контроля соблюдения сроков. Это вывод по документации отчета и аналитики тест-плана. <strong>Источники:</strong> <a href="https://docs.testit.software/user-guide/manual-testing-workflow/test-plan-report.html">Отчет по тест-плану</a></p>
+</ol>
+<ol>
+<li><strong>Для чего необходимы ссылки в проекте, как их создавать и использовать?</strong>  </li>
+<p>Ссылки нужны для связи рабочих элементов с дефектами, задачами, требованиями, репозиториями и другими связанными объектами. Они позволяют трассировать происхождение теста, быстро переходить к связанным артефактам и отслеживать статус связанных задач и дефектов. Чтобы создать ссылку, нужно открыть рабочий элемент, перейти в раздел <strong>Ссылки</strong>, указать тип ссылки и URL, затем сохранить ее. При редактировании можно задать или изменить URL, заголовок, описание и тип ссылки. В данной работе ссылки особенно полезны для связи тест-кейсов, созданных по баг-репортам, с самими баг-репортами через тип ссылки <strong>Дефект</strong>. <strong>Источники:</strong> <a href="https://docs.testit.software/user-guide/sections/add-links-to-work-items.html">Добавление ссылок в тесты</a></p>
+</ol>
+<ol>
+<li><strong>Разработайте систему тегов для тест-кейсов из 2-й практической.</strong>  </li>
+<p>Для тест-кейсов по полю <code>First name</code> удобно использовать префиксную систему тегов, чтобы их было легко фильтровать:</p>
+</ol>
+<table><thead><tr><th>Группа</th><th>Примеры тегов</th><th>Назначение</th></tr></thead><tbody><tr><td>Функциональность</td><td><code>feature:registration</code>, <code>field:first-name</code></td><td>К какой части системы относится тест</td></tr><tr><td>Тип сценария</td><td><code>type:positive</code>, <code>type:negative</code></td><td>Быстрая фильтрация по позитивным и негативным кейсам</td></tr><tr><td>Вид проверки</td><td><code>check:boundary</code>, <code>check:validation</code>, <code>check:format</code>, <code>check:required</code></td><td>Что именно проверяется</td></tr><tr><td>Данные</td><td><code>data:cyrillic</code>, <code>data:latin</code>, <code>data:digits</code>, <code>data:hyphen</code>, <code>data:space</code>, <code>data:empty</code>, <code>data:max-length</code>, <code>data:over-limit</code></td><td>Какие входные данные используются</td></tr><tr><td>Риск / качество</td><td><code>risk:usability</code>, <code>risk:localization</code>, <code>risk:input-sanitization</code></td><td>Для группировки по типу риска</td></tr></tbody></table>
+<p>Примеры комбинаций:</p>
+<p>1. <code>feature:registration</code>, <code>field:first-name</code>, <code>type:positive</code>, <code>check:validation</code>, <code>data:cyrillic</code> 2. <code>feature:registration</code>, <code>field:first-name</code>, <code>type:negative</code>, <code>check:boundary</code>, <code>data:over-limit</code> 3. <code>feature:registration</code>, <code>field:first-name</code>, <code>type:negative</code>, <code>check:format</code>, <code>data:digits</code></p>
+<p>Такая система помогает быстро искать кейсы, делать выборки для регрессии и поддерживать единый стиль тегирования в проекте. <strong>Источник по механике тегов:</strong> <a href="https://docs.testit.software/user-guide/sections/add-tags-to-tests.html">Использование тегов</a></p>
+<ol>
+<li><strong>Что такое общий шаг, как его создать и использовать?</strong>  </li>
+<p>Общий шаг — это переиспользуемый шаг теста, который хранится в библиотеке как отдельный рабочий элемент и может применяться в нескольких тест-кейсах. Он нужен для сокращения дублирования и упрощения сопровождения однотипных сценариев. Общий шаг можно:</p>
+</ol>
+<p>1. Создать как отдельный рабочий элемент в библиотеке тестов. 2. Создать на основе уже написанных шагов тест-кейса через команду <strong>Создать общий шаг</strong>. 3. Добавить в тест-кейс через меню шага <strong>Добавить общий шаг</strong>.</p>
+<p>После вставки общий шаг можно развернуть, расформировать, дублировать или удалить из конкретного тест-кейса. <strong>Источники:</strong> <a href="https://docs.testit.software/user-guide/sections/add-shared-step-to-test-case.html">Добавление общего шага в тест</a>, <a href="https://docs.testit.software/user-guide/sections/convert-actions-into-a-shared-step.html">Выделение шагов теста в общий шаг</a>, <a href="https://docs.testit.software/user-guide/sections/compare-work-item-types.html">Сравнение типов рабочих элементов</a></p>
+<ol>
+<li><strong>Как выглядит конфигурационный файл для импорта тест-кейсов, что он из себя представляет и как его написать?</strong>  </li>
+<p>При импорте <code>XLSX</code> TestIT позволяет сохранить конфигурационный файл в формате <code>.json</code>. По документации он нужен для автоматического восстановления настроек импорта: стартовой строки, режима форматирования, соответствия колонок Excel полям TestIT и сопоставления значений для атрибутов типа <strong>Варианты на выбор</strong>. Официальная документация описывает назначение такого файла и сценарий его сохранения, но не публикует полную JSON-схему. Поэтому на практике правильнее сначала один раз настроить импорт через интерфейс, сохранить конфигурацию, а затем использовать полученный <code>.json</code> как основу для повторных импортов. Ниже приведен <strong>иллюстративный пример</strong> структуры такого файла. Это именно пример по логике работы интерфейса, а не дословный образец из документации:</p>
+</ol>
+<pre><code>   {
+     &quot;startRow&quot;: 2,
+     &quot;textFormattingMode&quot;: &quot;PlainText&quot;,
+     &quot;mappings&quot;: {
+       &quot;ID&quot;: &quot;ExternalId&quot;,
+       &quot;Название&quot;: &quot;Name&quot;,
+       &quot;Предусловия&quot;: &quot;Preconditions&quot;,
+       &quot;Шаги&quot;: &quot;Steps&quot;,
+       &quot;Ожидаемый результат&quot;: &quot;ExpectedResult&quot;,
+       &quot;Приоритет&quot;: &quot;Priority&quot;,
+       &quot;Тип&quot;: &quot;WorkItemType&quot;
+     },
+     &quot;enumMappings&quot;: {
+       &quot;Приоритет&quot;: {
+         &quot;крайне высокий&quot;: &quot;Highest&quot;,
+         &quot;высокий&quot;: &quot;High&quot;,
+         &quot;средний&quot;: &quot;Medium&quot;,
+         &quot;низкий&quot;: &quot;Low&quot;
+       }
+     },
+     &quot;targetSection&quot;: &quot;Практическая 2 / Импорт&quot;
+   }</code></pre>
+<p>Такой файл по сути является сохраненной картой соответствия между таблицей и полями TestIT. <strong>Источники:</strong> <a href="https://docs.testit.software/user-guide/sections/import-tests/import-test-cases-from-xlsx-files.html">Импорт тестовой документации из XLS и XLSX</a></p>
+<ol>
+<li><strong>Что такое атрибуты, где они используются и как их создать?</strong>  </li>
+<p>Атрибуты — это пользовательские поля, с помощью которых можно настраивать карточки рабочих элементов и тест-планов. В проекте TestIT доступны атрибуты тест-плана, проектные атрибуты, глобальные атрибуты и шаблоны атрибутов. Проектные и глобальные атрибуты добавляют дополнительные поля в рабочие элементы проекта, а атрибуты тест-плана — в тест-планы. Атрибуты используются для хранения дополнительной информации, например сроков, исполнителей, пользовательских статусов классификации, приоритетных меток или доменных признаков. Создание проектного атрибута выполняется через <strong>Атрибуты -&gt; Проектные атрибуты -&gt; Создать</strong>, затем задаются название, обязательность, тип и, при необходимости, варианты выбора. <strong>Источники:</strong> <a href="https://docs.testit.software/user-guide/work-with-projects/set-up-attributes.html">Настройка атрибутов в проекте</a>, <a href="https://docs.testit.software/user-guide/glossary.html">Глоссарий</a></p>
+</ol>
+<ol>
+<li><strong>Для чего можно использовать дашборд, как создавать в нем виджеты, что они могут отражать?</strong>  </li>
+<p>Дашборд в TestIT нужен для визуализации аналитики по тестированию. Через него можно отслеживать состояние тестов, тест-планов, прогонов, автотестов и активность команды. Виджет создается так: нужно открыть дашборд, нажать <strong>Создать</strong> или <strong>Добавить виджет</strong>, указать название, выбрать формат отображения, тип данных и способ группировки, затем сохранить. Виджеты могут отображать:</p>
+</ol>
+<p>1. Результаты тестов 2. Тесты 3. Автотесты 4. Тест-планы 5. Прогоны 6. Активность команды</p>
+<p>Форматы визуализации включают круговую диаграмму, тренды, линейчатую диаграмму, таблицу, команду и таймлайн. Например, для тестов из библиотеки можно строить аналитику по статусу, приоритету, типу автоматизации, авторам и покрытию ссылками. <strong>Источники:</strong> <a href="https://docs.testit.software/user-guide/dashboards/work-with-widgets/">Работа с виджетами</a>, <a href="https://docs.testit.software/user-guide/dashboards/work-with-widgets/visualize-test-data.html">Анализ тестов, хранящихся в библиотеке</a>, <a href="https://docs.testit.software/user-guide/dashboards/work-with-widgets/visualize-test-plans.html">Анализ тест-планов</a></p>
+<ol>
+<li><strong>Что значат пользовательские наборы тест-кейсов и наборы из секции?</strong>  </li>
+<p>В TestIT тестовый набор — это часть тест-плана, в которую входят тесты, подготовленные к выполнению. Пользовательский набор содержит тесты, которые пользователь выбрал вручную из библиотеки. Такой набор удобен, когда нужно собрать произвольную подборку кейсов под конкретную цель, например smoke или проверку отдельной функции. Набор из секции библиотеки формируется на основе выбранной секции библиотеки тестов, получает идентичное название и включает все вложенные секции. Такой вариант удобен, когда структура тест-плана должна повторять структуру библиотеки тестов. Дополнительно в системе существуют динамические наборы, но в вопросе требуются именно первые два типа. <strong>Источники:</strong> <a href="https://docs.testit.software/user-guide/manual-testing-workflow/build-up-test-suite.html">Формирование тестового набора</a>, <a href="https://docs.testit.software/user-guide/work-with-projects/project-structure-and-components.html">Структура и компоненты проекта</a></p>
+</ol>
+<ol>
+<li><strong>Для чего нужен приватный API-токен пользователя?</strong>  </li>
+<p>Приватный API-токен нужен для работы с API TestIT. Он используется для авторизации в Swagger и в других инструментах, которые взаимодействуют с системой программно. В интерфейсе Swagger авторизация выполняется в формате <code>PrivateToken {API Secret Key}</code>. Такой токен можно применять для интеграций, автоматизации, использования API-клиентов и импортера / мигратора TestIT. Токен создается в профиле пользователя во вкладке <strong>Безопасность</strong>. Документация отдельно предупреждает, что токен нужно сохранить сразу после генерации, так как позже его значение больше не показывается. <strong>Источники:</strong> <a href="https://docs.testit.software/user-guide/user-settings.html">Настройки профиля и создание API-токена</a>, <a href="https://docs.testit.software/user-guide/work-with-api.html">Работа с API</a>, <a href="https://docs.testit.software/user-guide/migration/importer.html">Загрузка тест-кейсов в Test IT с помощью импортера</a></p>
+</ol>
+</body>
+</html>

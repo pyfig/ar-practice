@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Задание 1: Test Results</title>
+  <style>
+    :root {
+      --bg: #f5efe6;
+      --paper: #fffdf9;
+      --ink: #1f2629;
+      --muted: #5b666d;
+      --line: #d9cbbd;
+      --accent: #0f766e;
+      --accent-soft: #d6f5ee;
+      --warn: #b45309;
+      --warn-soft: #fff0d5;
+      --danger: #b42318;
+      --danger-soft: #fee4e2;
+      --ok: #027a48;
+      --ok-soft: #d1fadf;
+      --shadow: 0 18px 40px rgba(31, 38, 41, 0.08);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, rgba(15, 118, 110, 0.10), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(180, 83, 9, 0.10), transparent 26%),
+        var(--bg);
+      color: var(--ink);
+      font-family: "IBM Plex Sans", "Trebuchet MS", sans-serif;
+      line-height: 1.45;
+    }
+    .wrap {
+      max-width: 1480px;
+      margin: 0 auto;
+      padding: 40px;
+    }
+    .hero {
+      background: linear-gradient(135deg, rgba(15, 118, 110, 0.95), rgba(12, 74, 110, 0.92));
+      color: white;
+      border-radius: 28px;
+      padding: 30px 34px;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      margin: 0;
+      font-size: 40px;
+      line-height: 1.05;
+    }
+    .hero p {
+      margin: 12px 0 0;
+      font-size: 18px;
+      max-width: 900px;
+      color: rgba(255, 255, 255, 0.9);
+    }
+    .grid {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(12, 1fr);
+    }
+    .span-12 { grid-column: span 12; }
+    .span-8 { grid-column: span 8; }
+    .span-7 { grid-column: span 7; }
+    .span-6 { grid-column: span 6; }
+    .span-5 { grid-column: span 5; }
+    .span-4 { grid-column: span 4; }
+    .card {
+      background: var(--paper);
+      border: 1px solid rgba(217, 203, 189, 0.9);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+    .card h2 {
+      margin: 0 0 6px;
+      font-size: 24px;
+    }
+    .subtitle {
+      color: var(--muted);
+      font-size: 15px;
+      margin-bottom: 18px;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+    .badge-neutral { background: #edf2f7; color: #334155; }
+    .badge-ok { background: var(--ok-soft); color: var(--ok); }
+    .badge-warn { background: var(--warn-soft); color: var(--warn); }
+    .badge-danger { background: var(--danger-soft); color: var(--danger); }
+    .kv {
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      gap: 10px 16px;
+      margin: 0;
+    }
+    .kv dt {
+      color: var(--muted);
+      font-weight: 700;
+    }
+    .kv dd {
+      margin: 0;
+      font-family: "IBM Plex Mono", "SFMono-Regular", monospace;
+      font-size: 14px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 16px;
+      font-size: 14px;
+    }
+    th, td {
+      border-bottom: 1px solid rgba(217, 203, 189, 0.75);
+      text-align: left;
+      padding: 12px 14px;
+      vertical-align: top;
+    }
+    th {
+      background: #f5f0e8;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+    }
+    tr:last-child td { border-bottom: none; }
+    .code {
+      margin: 0;
+      padding: 18px 20px;
+      border-radius: 18px;
+      background: #15202b;
+      color: #e6f1f1;
+      font-size: 14px;
+      line-height: 1.55;
+      white-space: pre-wrap;
+      word-break: break-word;
+      overflow-wrap: anywhere;
+      font-family: "IBM Plex Mono", "SFMono-Regular", monospace;
+    }
+    .panel {
+      border: 1px solid rgba(217, 203, 189, 0.85);
+      border-radius: 18px;
+      padding: 16px 18px;
+      background: #fffaf2;
+    }
+    .panel h3 {
+      margin: 0 0 12px;
+      font-size: 16px;
+    }
+    .list {
+      margin: 0;
+      padding-left: 22px;
+    }
+    .list li + li {
+      margin-top: 8px;
+    }
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    .response-box {
+      border-radius: 18px;
+      background: #fff;
+      border: 1px solid rgba(217, 203, 189, 0.9);
+      padding: 16px;
+    }
+    .response-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    .small {
+      color: var(--muted);
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <h1>Задание 1: Test Results</h1>
+      <p>Практическая 7 по Postman: публичный API, тесты, Runner, переменные, коллекция ServeRest и реальные результаты прогонов через Newman.</p>
+    </header>
+    
+    <div class="grid">
+      <div class="span-6">
+        <section class='card'><h2>Test Results</h2><div class='subtitle'>Итоги запусков коллекции Cat Facts</div><table><thead><tr><th>Run</th><th>Iterations</th><th>Requests</th><th>Assertions</th><th>Status</th></tr></thead><tbody><tr><td>Base run</td><td>1</td><td>4</td><td>13</td><td><span class='badge badge-ok'>0 errors</span></td></tr><tr><td>CSV Runner</td><td>3</td><td>12</td><td>39</td><td><span class='badge badge-ok'>0 errors</span></td></tr><tr><td>JSON Runner</td><td>3</td><td>12</td><td>39</td><td><span class='badge badge-ok'>0 errors</span></td></tr></tbody></table></section>
+      </div>
+      <div class="span-6">
+        <section class='card'><h2>Sample response</h2><div class='subtitle'>Пример ответа для Get Random Fact</div><pre class='code'>{&quot;fact&quot;:&quot;Cat paws act as tempetature regulators, shock absorbers, hunting and grooming tools, sensors, and more&quot;,&quot;length&quot;:102}</pre></section>
+      </div>
+    </div>
+    
+  </div>
+</body>
+</html>
