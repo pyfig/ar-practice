@@ -11,6 +11,7 @@
 - Базовый URL: `https://catfact.ninja`
 - Авторизация: не требуется
 - Назначение: получение фактов и справочной информации о кошках
+- Файлы коллекции и окружения: `data/CatFacts.postman_collection.json`, `data/CatFacts.postman_environment.json`
 
 ### Краткое описание запросов
 
@@ -91,6 +92,8 @@
 
 В Postman импортирована готовая коллекция `ServerREST` и окружение `ServerREST Practice Environment`.
 
+Использованные файлы импорта: `data/ServerREST.postman_collection.json` и `data/ServerREST.postman_environment.json`.
+
 Были проанализированы и запускались следующие разделы коллекции:
 
 - `BASE`
@@ -149,4 +152,3 @@
 2. В `Teste Carrinho / Cancela compra - volta produtos pro estoque / Listar produto por id` есть ошибка `quantidade is not defined`.
 3. В `Teste Carrinho / Happy Path / Cadastrar Carrinho` часть проверок ожидает сообщение, которого нет в фактическом ответе.
 4. В ряде негативных сценариев коллекция падает не из-за недоступности API, а из-за ошибок в самих тестовых ассертах.
-
