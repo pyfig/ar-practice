@@ -1,0 +1,157 @@
+{
+  "generatedAt": "2026-03-19T06:40:18.474Z",
+  "browserVersion": "146.0.7680.153",
+  "screenshotsDir": "/private/tmp/devtools_runner/devtools-report-assets",
+  "summary": [
+    {
+      "number": 1,
+      "title": "Метод запроса",
+      "route": "/tasks/request_method",
+      "verdict": "Корректно",
+      "expected": "POST",
+      "actual": "Метод POST, статус ответа 200",
+      "evidence": "В DevTools Network у запроса зафиксирован метод POST.",
+      "screenshot": "/private/tmp/devtools_runner/devtools-report-assets/01-request_method.png"
+    },
+    {
+      "number": 2,
+      "title": "Статус ответа",
+      "route": "/tasks/response_status",
+      "verdict": "Корректно",
+      "expected": "201",
+      "actual": "Статус ответа 201",
+      "evidence": "В Network у POST /tasks/response_status вернулся HTTP 201.",
+      "screenshot": "/private/tmp/devtools_runner/devtools-report-assets/02-response_status.png"
+    },
+    {
+      "number": 3,
+      "title": "JSON в запросе",
+      "route": "/tasks/json_request",
+      "verdict": "Есть баг",
+      "expected": "{\"name\":\"Ivan\"}",
+      "actual": "{}",
+      "evidence": "В Payload отправилось тело {}.",
+      "screenshot": "/private/tmp/devtools_runner/devtools-report-assets/03-json_request.png"
+    },
+    {
+      "number": 4,
+      "title": "JSON в ответе",
+      "route": "/tasks/json_response",
+      "verdict": "Есть баг",
+      "expected": "Content-Type: application/json и JSON в body",
+      "actual": "Content-Type: application/xml; body: <?xml version=\"1.0\"?> <QaStudioStudent>false</QaStudioStudent>",
+      "evidence": "В Headers/Preview у ответа указан Content-Type application/xml.",
+      "screenshot": "/private/tmp/devtools_runner/devtools-report-assets/04-json_response.png"
+    },
+    {
+      "number": 5,
+      "title": "Cookie",
+      "route": "/tasks/cookie",
+      "verdict": "Корректно",
+      "expected": "Cookie devtools_session_id с HttpOnly, Secure и сроком 1 год",
+      "actual": "devtools_session_id=192304cd-317f-4cc3-8f20-f76e6a2a51cd; Max-Age=31536000; Path=/; HttpOnly; Secure; SameSite=Lax",
+      "evidence": "В ответе пришел заголовок Set-Cookie: devtools_session_id=192304cd-317f-4cc3-8f20-f76e6a2a51cd; Max-Age=31536000; Path=/; HttpOnly; Secure; SameSite=Lax.",
+      "screenshot": "/private/tmp/devtools_runner/devtools-report-assets/05-cookie.png"
+    },
+    {
+      "number": 6,
+      "title": "Заголовки запроса",
+      "route": "/tasks/request_headers",
+      "verdict": "Корректно",
+      "expected": "Заголовок X-User-Id в запросе",
+      "actual": "X-User-Id: 3387a4e6-3013-4fb2-bb64-828fd71cfd06",
+      "evidence": "В Request Headers передан X-User-Id: 3387a4e6-3013-4fb2-bb64-828fd71cfd06.",
+      "screenshot": "/private/tmp/devtools_runner/devtools-report-assets/06-request_headers.png"
+    },
+    {
+      "number": 7,
+      "title": "Заголовки ответа",
+      "route": "/tasks/response_headers",
+      "verdict": "Есть баг",
+      "expected": "Заголовок X-Request-Id в ответе сервера",
+      "actual": "В ответе заголовок отсутствует, но в запросе был 12222d0a-9fb0-4103-b308-0195f1ed5a19",
+      "evidence": "В Response Headers заголовок X-Request-Id отсутствует.",
+      "screenshot": "/private/tmp/devtools_runner/devtools-report-assets/07-response_headers.png"
+    },
+    {
+      "number": 8,
+      "title": "Query параметры",
+      "route": "/tasks/query_params",
+      "verdict": "Есть баг",
+      "expected": "query param section=3",
+      "actual": "URL без section=3; body: {\"section\":\"3\"}",
+      "evidence": "В URL нет query-параметров, данные ушли в body: {\"section\":\"3\"}.",
+      "screenshot": "/private/tmp/devtools_runner/devtools-report-assets/08-query_params.png"
+    },
+    {
+      "number": 9,
+      "title": "Local storage",
+      "route": "/tasks/local_storage",
+      "verdict": "Есть баг",
+      "expected": "Ключ name в localStorage",
+      "actual": "значение сохранено в address=Ivan",
+      "evidence": "Вместо name записан ключ address=Ivan.",
+      "screenshot": "/private/tmp/devtools_runner/devtools-report-assets/09-local_storage.png"
+    },
+    {
+      "number": 10,
+      "title": "Session storage",
+      "route": "/tasks/session_storage",
+      "verdict": "Есть баг",
+      "expected": "Ключ name в sessionStorage",
+      "actual": "значение не найдено в sessionStorage",
+      "evidence": "В sessionStorage значение не сохранилось.",
+      "screenshot": "/private/tmp/devtools_runner/devtools-report-assets/10-session_storage.png"
+    },
+    {
+      "number": 11,
+      "title": "Кэш браузера",
+      "route": "/tasks/cache",
+      "verdict": "Демонстрационное задание",
+      "expected": "Изображение cat.png должно быть доступно в Cache Storage после загрузки страницы",
+      "actual": "cat.png не найден",
+      "evidence": "В Cache Storage найден ресурс: cat.png не найден.",
+      "screenshot": "/private/tmp/devtools_runner/devtools-report-assets/11-cache.png"
+    },
+    {
+      "number": 12,
+      "title": "Мобильная вёрстка",
+      "route": "/tasks/css_mobile",
+      "verdict": "Есть баг",
+      "expected": "При 380x685 кнопка должна располагаться под полем",
+      "actual": "Кнопка стоит в одной строке с полем (y поля 452, y кнопки 451)",
+      "evidence": "На мобильной ширине поле и кнопка остались в одной строке.",
+      "screenshot": "/private/tmp/devtools_runner/devtools-report-assets/12-css_mobile.png"
+    },
+    {
+      "number": 13,
+      "title": "CSS цвет",
+      "route": "/tasks/css_color",
+      "verdict": "Есть баг",
+      "expected": "#f28338",
+      "actual": "#de732a (rgb(222, 115, 42))",
+      "evidence": "Computed style кнопки: background-color rgb(222, 115, 42), что соответствует #de732a.",
+      "screenshot": "/private/tmp/devtools_runner/devtools-report-assets/13-css_color.png"
+    },
+    {
+      "number": 14,
+      "title": "CSS шрифт",
+      "route": "/tasks/css_font",
+      "verdict": "Есть баг",
+      "expected": "SuisseIntl, 24px",
+      "actual": "SuisseIntl, sans-serif, 20px",
+      "evidence": "Computed style заголовка: font-family SuisseIntl, sans-serif, font-size 20px.",
+      "screenshot": "/private/tmp/devtools_runner/devtools-report-assets/14-css_font.png"
+    },
+    {
+      "number": 15,
+      "title": "Валидация поля",
+      "route": "/tasks/field_validation",
+      "verdict": "Есть баг",
+      "expected": "Бэкенд должен возвращать ошибку на невалидный email",
+      "actual": "POST с bad-email вернул {\"message\":\"Адрес электронной почты успешно получен\",\"data\":{\"email\":\"bad-email\"}}",
+      "evidence": "Прямой POST с невалидным email вернул {\"message\":\"Адрес электронной почты успешно получен\",\"data\":{\"email\":\"bad-email\"}}. UI-запрос с валидным email: {\"message\":\"Адрес электронной почты успешно получен\",\"data\":{\"email\":\"student@example.com\"}}",
+      "screenshot": "/private/tmp/devtools_runner/devtools-report-assets/15-field_validation.png"
+    }
+  ]
+}

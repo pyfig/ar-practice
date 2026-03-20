@@ -1,0 +1,178 @@
+{
+  "info": {
+    "_postman_id": "4f26210a-fef1-4931-a22f-786c53f7e98a",
+    "name": "Cat Facts API Practice",
+    "description": "Коллекция для 7 практической работы по Postman. Использует публичный API catfact.ninja и содержит 4 GET-запроса с простыми автотестами.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "codex"
+  },
+  "item": [
+    {
+      "name": "Get Random Fact",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "const jsonData = pm.response.json();",
+              "",
+              "pm.test(\"Response contains fact\", function () {",
+              "    pm.expect(jsonData.fact).to.be.a(\"string\").and.not.empty;",
+              "});",
+              "",
+              "pm.test(\"Response contains numeric length\", function () {",
+              "    pm.expect(jsonData.length).to.be.a(\"number\");",
+              "    pm.expect(jsonData.length).to.be.greaterThan(0);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/fact",
+        "description": "Получение случайного факта о кошках."
+      },
+      "response": []
+    },
+    {
+      "name": "Get Fact With Max Length",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "const jsonData = pm.response.json();",
+              "const maxLength = Number(pm.variables.get(\"max_length\"));",
+              "",
+              "pm.test(\"Response contains fact\", function () {",
+              "    pm.expect(jsonData.fact).to.be.a(\"string\").and.not.empty;",
+              "});",
+              "",
+              "pm.test(\"Fact length is within max_length\", function () {",
+              "    pm.expect(jsonData.length).to.be.a(\"number\");",
+              "    pm.expect(jsonData.length).to.be.at.most(maxLength);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/fact?max_length={{max_length}}",
+        "description": "Получение случайного факта с ограничением длины через query-параметр max_length."
+      },
+      "response": []
+    },
+    {
+      "name": "Get Facts With Filters",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "const jsonData = pm.response.json();",
+              "const limit = Number(pm.variables.get(\"limit\"));",
+              "const maxLength = Number(pm.variables.get(\"max_length\"));",
+              "",
+              "pm.test(\"Response contains data array\", function () {",
+              "    pm.expect(jsonData.data).to.be.an(\"array\");",
+              "    pm.expect(jsonData.data.length).to.be.greaterThan(0);",
+              "});",
+              "",
+              "pm.test(\"Returned records do not exceed limit\", function () {",
+              "    pm.expect(jsonData.data.length).to.be.at.most(limit);",
+              "});",
+              "",
+              "pm.test(\"Every fact respects max_length\", function () {",
+              "    jsonData.data.forEach(function (item) {",
+              "        pm.expect(item.length).to.be.at.most(maxLength);",
+              "    });",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/facts?limit={{limit}}&max_length={{max_length}}",
+        "description": "Получение списка фактов с параметрами limit и max_length. Используется для прогона через Runner."
+      },
+      "response": []
+    },
+    {
+      "name": "Get Breeds",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "const jsonData = pm.response.json();",
+              "",
+              "pm.test(\"Response contains breeds array\", function () {",
+              "    pm.expect(jsonData.data).to.be.an(\"array\");",
+              "    pm.expect(jsonData.data.length).to.be.greaterThan(0);",
+              "});",
+              "",
+              "pm.test(\"First breed contains breed name\", function () {",
+              "    pm.expect(jsonData.data[0].breed).to.be.a(\"string\").and.not.empty;",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/breeds?limit={{breed_limit}}",
+        "description": "Получение списка пород кошек с параметром limit."
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://catfact.ninja",
+      "type": "string"
+    },
+    {
+      "key": "limit",
+      "value": "3",
+      "type": "string"
+    },
+    {
+      "key": "max_length",
+      "value": "80",
+      "type": "string"
+    },
+    {
+      "key": "breed_limit",
+      "value": "3",
+      "type": "string"
+    }
+  ]
+}
