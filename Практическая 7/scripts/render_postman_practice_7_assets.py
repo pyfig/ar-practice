@@ -5,9 +5,10 @@ import json
 from pathlib import Path
 
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parent.parent
+DATA_DIR = ROOT / "data"
 RESULTS = ROOT / "results"
-HTML_DIR = ROOT / "generated_html"
+HTML_DIR = ROOT / "generated"
 
 
 def read_json(path: Path) -> dict:
@@ -309,9 +310,9 @@ def write_html(filename: str, title: str, body: str) -> None:
 
 
 def main() -> None:
-    cat_collection = read_json(ROOT / "CatFacts.postman_collection.json")
-    cat_env = read_json(ROOT / "CatFacts.postman_environment.json")
-    server_env = read_json(ROOT / "ServerREST.postman_environment.json")
+    cat_collection = read_json(DATA_DIR / "CatFacts.postman_collection.json")
+    cat_env = read_json(DATA_DIR / "CatFacts.postman_environment.json")
+    server_env = read_json(DATA_DIR / "ServerREST.postman_environment.json")
     cat_base = read_json(RESULTS / "catfacts-base.json")
     cat_csv = read_json(RESULTS / "catfacts-csv.json")
     cat_json = read_json(RESULTS / "catfacts-json.json")

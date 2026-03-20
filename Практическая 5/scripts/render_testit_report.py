@@ -11,9 +11,18 @@ BOLD_RE = re.compile(r"\*\*([^*]+)\*\*")
 LINK_RE = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
 
 
+def with_base_path(path: str) -> str:
+    if "://" in path or path.startswith(("#", "/", "mailto:", "tel:")):
+        return path
+    return f"../{path}"
+
+
 def convert_inline(text: str) -> str:
     escaped = html.escape(text)
-    escaped = LINK_RE.sub(r'<a href="\2">\1</a>', escaped)
+    escaped = LINK_RE.sub(
+        lambda match: f'<a href="{with_base_path(match.group(2))}">{match.group(1)}</a>',
+        escaped,
+    )
     escaped = BOLD_RE.sub(r"<strong>\1</strong>", escaped)
     escaped = INLINE_CODE_RE.sub(r"<code>\1</code>", escaped)
     return escaped
@@ -123,7 +132,7 @@ def markdown_to_html(md_text: str, title: str) -> str:
             src = line[line.find("(") + 1 : -1]
             out.append(
                 "<figure>"
-                f'<img src="{html.escape(src)}" alt="{html.escape(alt)}" />'
+                f'<img src="{html.escape(with_base_path(src))}" alt="{html.escape(alt)}" />'
                 f"<figcaption>{html.escape(alt)}</figcaption>"
                 "</figure>"
             )
@@ -247,11 +256,13 @@ def markdown_to_html(md_text: str, title: str) -> str:
 
 
 def main() -> None:
-    base = Path(__file__).resolve().parent
-    md_path = base / "testit_practice_5_report.md"
-    html_path = base / "testit_practice_5_report.html"
+    practice_root = Path(__file__).resolve().parent.parent
+    md_path = practice_root / "README.md"
+    html_dir = practice_root / "generated"
+    html_path = html_dir / "testit_practice_5_report.html"
     md_text = md_path.read_text(encoding="utf-8")
     html_text = markdown_to_html(md_text, "Практическая работа 5. TestIT")
+    html_dir.mkdir(parents=True, exist_ok=True)
     html_path.write_text(html_text, encoding="utf-8")
     print(html_path)
 

@@ -35,7 +35,7 @@
 - Фактически: в `Network` зафиксирован метод `POST`, статус ответа `200`.
 - Вывод: баг не обнаружен.
 
-![01 request method](./devtools-report-assets/01-request_method.png)
+![01 request method](images/01-request_method.png)
 
 ### 2. Статус ответа
 
@@ -43,7 +43,7 @@
 - Фактически: в `Network` получен статус `201`.
 - Вывод: баг не обнаружен.
 
-![02 response status](./devtools-report-assets/02-response_status.png)
+![02 response status](images/02-response_status.png)
 
 ### 3. JSON в запросе
 
@@ -51,7 +51,7 @@
 - Фактически: в `Payload` ушло тело `{}`.
 - Вывод: есть баг, данные в JSON передаются некорректно.
 
-![03 json request](./devtools-report-assets/03-json_request.png)
+![03 json request](images/03-json_request.png)
 
 ### 4. JSON в ответе
 
@@ -59,7 +59,7 @@
 - Фактически: сервер вернул `Content-Type: application/xml`, body: `<?xml version="1.0"?><QaStudioStudent>false</QaStudioStudent>`.
 - Вывод: есть баг, вместо JSON приходит XML.
 
-![04 json response](./devtools-report-assets/04-json_response.png)
+![04 json response](images/04-json_response.png)
 
 ### 5. Cookie
 
@@ -67,7 +67,7 @@
 - Фактически: `Set-Cookie: devtools_session_id=...; Max-Age=31536000; Path=/; HttpOnly; Secure; SameSite=Lax`.
 - Вывод: баг не обнаружен.
 
-![05 cookie](./devtools-report-assets/05-cookie.png)
+![05 cookie](images/05-cookie.png)
 
 ### 6. Заголовки запроса
 
@@ -75,7 +75,7 @@
 - Фактически: в `Request Headers` передан `X-User-Id: 3387a4e6-3013-4fb2-bb64-828fd71cfd06`.
 - Вывод: баг не обнаружен.
 
-![06 request headers](./devtools-report-assets/06-request_headers.png)
+![06 request headers](images/06-request_headers.png)
 
 ### 7. Заголовки ответа
 
@@ -83,7 +83,7 @@
 - Фактически: в `Response Headers` заголовок отсутствует, при этом в запросе был передан `X-Request-Id`.
 - Вывод: есть баг, заголовок ушел в запрос вместо ответа.
 
-![07 response headers](./devtools-report-assets/07-response_headers.png)
+![07 response headers](images/07-response_headers.png)
 
 ### 8. Query параметры
 
@@ -91,7 +91,7 @@
 - Фактически: в URL query-параметров нет, данные ушли в body: `{"section":"3"}`.
 - Вывод: есть баг, параметры передаются не через query string.
 
-![08 query params](./devtools-report-assets/08-query_params.png)
+![08 query params](images/08-query_params.png)
 
 ### 9. Local storage
 
@@ -99,7 +99,7 @@
 - Фактически: значение сохранилось по ключу `address=Ivan`.
 - Вывод: есть баг, используется неверный ключ.
 
-![09 local storage](./devtools-report-assets/09-local_storage.png)
+![09 local storage](images/09-local_storage.png)
 
 ### 10. Session storage
 
@@ -107,7 +107,7 @@
 - Фактически: в `sessionStorage` значение не найдено.
 - Вывод: есть баг, данные не сохраняются.
 
-![10 session storage](./devtools-report-assets/10-session_storage.png)
+![10 session storage](images/10-session_storage.png)
 
 ### 11. Кэш браузера
 
@@ -115,7 +115,7 @@
 - Фактически: в headless-проверке был создан `Cache Storage` с именем `cache`, но `cat.png` в списке ключей не появился.
 - Примечание: для этого задания рекомендуется дополнительная ручная проверка во вкладках `Network` и `Application` в обычном браузере.
 
-![11 cache](./devtools-report-assets/11-cache.png)
+![11 cache](images/11-cache.png)
 
 ### 12. Мобильная вёрстка
 
@@ -123,7 +123,7 @@
 - Фактически: кнопка осталась в одной строке с полем (`y` поля `452`, `y` кнопки `451`).
 - Вывод: есть баг, мобильная вёрстка не соответствует ожиданию.
 
-![12 css mobile](./devtools-report-assets/12-css_mobile.png)
+![12 css mobile](images/12-css_mobile.png)
 
 ### 13. CSS цвет
 
@@ -131,7 +131,7 @@
 - Фактически: вычисленный цвет кнопки `rgb(222, 115, 42)`, что соответствует `#de732a`.
 - Вывод: есть баг, цвет задан неверно.
 
-![13 css color](./devtools-report-assets/13-css_color.png)
+![13 css color](images/13-css_color.png)
 
 ### 14. CSS шрифт
 
@@ -139,7 +139,7 @@
 - Фактически: `font-family: SuisseIntl, sans-serif`, `font-size: 20px`.
 - Вывод: есть баг, размер шрифта неверный.
 
-![14 css font](./devtools-report-assets/14-css_font.png)
+![14 css font](images/14-css_font.png)
 
 ### 15. Валидация поля
 
@@ -148,4 +148,4 @@
 - Дополнительно: UI-запрос с валидным email `student@example.com` тоже завершился успешно.
 - Вывод: есть баг, серверная валидация email не реализована.
 
-![15 field validation](./devtools-report-assets/15-field_validation.png)
+![15 field validation](images/15-field_validation.png)
